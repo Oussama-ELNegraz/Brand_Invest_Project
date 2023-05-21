@@ -8,7 +8,7 @@ This project aims to create a platform that connects influencers and brands for 
 ## Installation
 1. Clone the repo
    ```sh
-   git clone
+   git clone https://github.com/oussama-gif/Brand_Invest_Project.git
     ```
 
 ## Usage
