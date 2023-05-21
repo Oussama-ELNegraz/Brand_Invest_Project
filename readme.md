@@ -3,34 +3,14 @@
 ## Description
 This project aims to create a platform that connects influencers and brands for possible partnerships. The platform allows new influencers and brands to sign up by providing their respective identities and other relevant information. Once authenticated, influencers can contact any brand, and vice versa, for potential partnership discussions.
 
-## Docs : ['']
+## Docs : ['docs.negraz.com']
 
 ## Installation
 1. Clone the repo
    ```sh
    git clone
     ```
-2. Install NPM packages
-    ```sh
-    npm install
-    ```
-3. Create a .env file in the root directory and add the following:
-    ```sh
-    NODE_ENV=development
-    PORT=5000
-    MONGO_URI=your mongodb uri
-    JWT_SECRET=your jwt secret
-    JWT_EXPIRE=30d
-    JWT_COOKIE_EXPIRE=30
-    ```
-4. Run the app
-    ```sh
-    npm run dev
-    ```
-5. Run the app in production
-    ```sh
-    npm start
-    ```
+
 ## Usage
 ### Influencer
 1. Sign up as an influencer
