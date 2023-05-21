@@ -17,7 +17,9 @@ use App\Core\Router;
  * This means that the code can now use the AuthenticationMiddleware class 
  * without having to write the full namespace every time it is used.
  */
+
 use App\Middlewares\AuthenticationMiddleware;
+
 /**
  * Thoses lines imports the controllers from the App\Controllers namespace.
  * This means that the code can now use those controllers
@@ -101,7 +103,7 @@ Router::post('/contact', fn () => view("front/contact"));
  * The get routes simply return a view, while the post route allows to send a message via the form.
  */
 Router::get('/login', function () {
-     /**
+    /**
      * This line checks if the user is already logged in by checking if the $_SESSION['USER'] variable is set.
      * If the user is already logged in, the "dashboard" redirection function will 
      * be called to redirect the user to the dashboard.
@@ -115,8 +117,8 @@ Router::get('/login', function () {
         $token = $_COOKIE['remember_token'];
         $user = User::where('token', '=', $token)->first();
         /**
-          * If a matching user is found, this code authenticates the user by storing the user object in the $_SESSION['USER'] variable.
-        **/
+         * If a matching user is found, this code authenticates the user by storing the user object in the $_SESSION['USER'] variable.
+         **/
 
         if ($user) {
             // Authenticate the user
@@ -124,59 +126,59 @@ Router::get('/login', function () {
         }
     }
     /**
-         * This line checks if the user is already logged in by checking if the $_SESSION['USER'] variable is set.
-         * If the user is already logged in, the "dashboard" redirection function will 
-         * be called to redirect the user to the dashboard.
+     * This line checks if the user is already logged in by checking if the $_SESSION['USER'] variable is set.
+     * If the user is already logged in, the "dashboard" redirection function will 
+     * be called to redirect the user to the dashboard.
      */
 
     if (isset($_SESSION['USER'])) {
-       Router::redirect("dashboard");
+        Router::redirect("dashboard");
     }
     /**
-         * If the user is not logged in, this line displays the login page.
-         * This page will allow the user to enter his login information to log in to the application.
+     * If the user is not logged in, this line displays the login page.
+     * This page will allow the user to enter his login information to log in to the application.
      */
     view('auth/login');
 });
 
 /**
-     * This line declares a route for the registration page using the HTTP GET method.
-     * When the user accesses this page, the anonymous function associated with this route will be executed.
+ * This line declares a route for the registration page using the HTTP GET method.
+ * When the user accesses this page, the anonymous function associated with this route will be executed.
  */
 
 Router::get('/register', function () {
     /**
-         * This line checks if the user is already logged in by checking if the $_SESSION['USER'] variable is set.
-         * If the user is already logged in, the "dashboard" redirection function will 
-         * be called to redirect the user to the dashboard.
+     * This line checks if the user is already logged in by checking if the $_SESSION['USER'] variable is set.
+     * If the user is already logged in, the "dashboard" redirection function will 
+     * be called to redirect the user to the dashboard.
      */
     if (isset($_SESSION['USER'])) {
-       Router::redirect("dashboard");
+        Router::redirect("dashboard");
     }
     /**
-        * If the user is not logged in, this line displays the registration page.
-        * This page will allow the user to enter his registration information to register in the application.
+     * If the user is not logged in, this line displays the registration page.
+     * This page will allow the user to enter his registration information to register in the application.
      */
     view('auth/register');
 });
 /**
-     * This line declares a route for the login page using the HTTP POST method.
-     * After the user submits the login form, The login method of the AuthController will be executed. 
+ * This line declares a route for the login page using the HTTP POST method.
+ * After the user submits the login form, The login method of the AuthController will be executed. 
  **/
 Router::post('/login', [AuthController::class, 'login']);
 
 Router::post('/register', [AuthController::class, 'register']);
 /**
-     * This line declares a route for the error page using the HTTP GET method.
-     * ErrorController::index is the method that will be executed when the user accesses this page.
+ * This line declares a route for the error page using the HTTP GET method.
+ * ErrorController::index is the method that will be executed when the user accesses this page.
  */
 
-Router::get('/error/{id}', function (...$args) {
+Router::get('/miscellaneous/{id}', function (...$args) {
     ErrorController::index($args[0]);
 });
 /**
-     * This line declares a route for the welcome page using the HTTP GET method.
-     * After the user logs in, the welcome page will be displayed.
+ * This line declares a route for the welcome page using the HTTP GET method.
+ * After the user logs in, the welcome page will be displayed.
  **/
 /**
  * This function defines a route using HTTP GET method for the "/welcome" URL.
@@ -185,7 +187,7 @@ Router::get('/error/{id}', function (...$args) {
 Router::get('/welcome', function () {
 
     if ($_SESSION['USER']->role) {
-       Router::redirect("dashboard");
+        Router::redirect("dashboard");
     }
     view("auth/welcome");
 });
@@ -201,9 +203,9 @@ Router::post('/logout', [AuthController::class, 'logout']);
 
 // DASHBOARD
 /**
-     * This line declares a route for the dashboard page using the HTTP GET method.
-     * DashboardController::index is the method that will be executed when the user accesses this page.
-     * AuthenticationMiddleware::class is the middleware that will be executed before the DashboardController::index method.
+ * This line declares a route for the dashboard page using the HTTP GET method.
+ * DashboardController::index is the method that will be executed when the user accesses this page.
+ * AuthenticationMiddleware::class is the middleware that will be executed before the DashboardController::index method.
  */
 Router::get('/dashboard', [DashboardController::class, 'index'], AuthenticationMiddleware::class);
 /**
@@ -246,11 +248,11 @@ Router::get('/brands/{id}', function (...$args) {
     BrandController::show($args[0]);
 }, AuthenticationMiddleware::class);
 /**
-     * These functions define routes for managing partnership proposals using HTTP GET and POST methods. The first route displays a list of partnership proposals by calling the "proposals" method of the PartnershipController class. 
-     * The second route displays the partnership index page by calling the "index" method of the same class. 
-     * The third route is used to create a new partnership proposal by calling the "create" method of the PartnershipController class using HTTP POST method.
-     * The fourth route is used to update the status of a partnership proposal by calling the "updateStatus" method of the PartnershipController class with the first argument of the variable argument list, which is the ID of the proposal to be updated.
-    *  All of these routes use the AuthenticationMiddleware class to authenticate the user before accessing the partnership information
+ * These functions define routes for managing partnership proposals using HTTP GET and POST methods. The first route displays a list of partnership proposals by calling the "proposals" method of the PartnershipController class. 
+ * The second route displays the partnership index page by calling the "index" method of the same class. 
+ * The third route is used to create a new partnership proposal by calling the "create" method of the PartnershipController class using HTTP POST method.
+ * The fourth route is used to update the status of a partnership proposal by calling the "updateStatus" method of the PartnershipController class with the first argument of the variable argument list, which is the ID of the proposal to be updated.
+ *  All of these routes use the AuthenticationMiddleware class to authenticate the user before accessing the partnership information
  */
 Router::get('/proposals', [PartnershipController::class, "proposals"], AuthenticationMiddleware::class);
 Router::get('/partnership', [PartnershipController::class, "index"], AuthenticationMiddleware::class);
@@ -260,10 +262,10 @@ Router::post('/partnership/{id}', function (...$args) {
     PartnershipController::updateStatus($args[0]);
 }, AuthenticationMiddleware::class);
 /**
-     * These functions define routes for managing user profiles using HTTP GET and POST methods.
-     *  The first route checks the user's role and displays the corresponding profile page (influencer or brand) by calling the "profile" method of the appropriate controller class. 
-     * The second route checks the user's role and updates the corresponding profile information by calling the "setprofile" method of the appropriate controller class using HTTP POST method.
-     *  Both routes use the AuthenticationMiddleware class to authenticate the user before accessing the profile information.
+ * These functions define routes for managing user profiles using HTTP GET and POST methods.
+ *  The first route checks the user's role and displays the corresponding profile page (influencer or brand) by calling the "profile" method of the appropriate controller class. 
+ * The second route checks the user's role and updates the corresponding profile information by calling the "setprofile" method of the appropriate controller class using HTTP POST method.
+ *  Both routes use the AuthenticationMiddleware class to authenticate the user before accessing the profile information.
  */
 
 Router::get('/profile', function () {
@@ -284,11 +286,11 @@ Router::post('/profile', function () {
     }
 }, AuthenticationMiddleware::class);
 /**
-   * These functions define routes for managing user transactions and account deletion using HTTP GET and POST methods.
-   *  The first route is used to delete the user's account by calling the "create" method of the DeletedAccountController class using HTTP POST method. 
-   * The second route displays a list of the user's transactions by calling the "index" method of the TransactionController class using HTTP GET method.
-   * The third route is used to create a new transaction by calling the "create" method of the TransactionController class with the first argument of the variable argument list using HTTP POST method.
-   *  All of these routes use the AuthenticationMiddleware class to authenticate the user before accessing the transaction and account deletion information.
+ * These functions define routes for managing user transactions and account deletion using HTTP GET and POST methods.
+ *  The first route is used to delete the user's account by calling the "create" method of the DeletedAccountController class using HTTP POST method. 
+ * The second route displays a list of the user's transactions by calling the "index" method of the TransactionController class using HTTP GET method.
+ * The third route is used to create a new transaction by calling the "create" method of the TransactionController class with the first argument of the variable argument list using HTTP POST method.
+ *  All of these routes use the AuthenticationMiddleware class to authenticate the user before accessing the transaction and account deletion information.
  */
 
 Router::post('/user-delete', [DeletedAccountController::class, 'create'], AuthenticationMiddleware::class);

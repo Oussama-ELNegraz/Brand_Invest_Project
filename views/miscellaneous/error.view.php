@@ -28,11 +28,14 @@
 </head>
 
 <body>
+  <script>
+    document.body.classList.add(localStorage.getItem("theme") || 'light');
+  </script>
   <div class="container text-center">
     <h1 class="mt-5 fw-semibold"><?= $title ?></h1>
     <p><?= $description ?></p>
     <a class="btn btn-primary my-2 d-inline-block" href="<?= APP_URL ?>/dashboard">BACK TO HOME</a>
-    <img class="d-block" src="https://demos.pixinvent.com/vuexy-vuejs-admin-template/demo-1/assets/401.605d79f7.png">
+    <img class="d-block" src="<?= APP_URL ?>/assets/images/error.png">
   </div>
 </body>
 

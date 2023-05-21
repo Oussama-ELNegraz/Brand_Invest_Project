@@ -159,8 +159,8 @@ abstract class Model
         $columns = implode(', ', array_keys($data));
         $placeholders = ':' . implode(', :', array_keys($data));
         $query = "INSERT INTO " . static::$table . " ({$columns}) VALUES ({$placeholders})";
-        echo $query;
-        print_r($data);
+        // echo $query;
+        // print_r($data);
         DB::query($query, $data);
     }
 

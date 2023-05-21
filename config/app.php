@@ -13,6 +13,6 @@
 
 define('APP_NAME', "Negraz");
 define('APP_FOLDER', "../");
-define('APP_URL', "http://localhost/Brand_Inverstissement/public");
+define('APP_URL', "http://localhost/Brand_Invest_Project/public");
 define('PARTNERSHIP_FEE', 20); // Must be between 0 and 100
 define('APP_DEBUG', true);
